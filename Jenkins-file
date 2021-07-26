@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('compile stage') {
+            steps {
+                withMAVEN(maven: 'Maven 3.8.1')
+                sh 'mvn clean compile'
+            }
+        }
+        stage('Test') {
+            steps {
+                withMAVEN(maven: 'Maven 3.8.1')
+                sh 'mvn test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                withMAVEN(maven: 'Maven 3.8.1')
+                sh 'mvn depoly'
+            }
+        }
+    }
+}
